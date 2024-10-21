@@ -6,7 +6,70 @@
         xmlns:local="clr-namespace:DariusInternshipApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        
+        <DataGrid x:Name="UsersTable" 
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Loaded="UsersTable_Loaded"
+        />
+        
+        <Grid Name="BottomPaginationGrid"
+              Grid.Row="3"
+              Grid.Column="1"
+        >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid Name="CenterPaginationGrid"
+                  Grid.Column="1"
+                  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="btnFirst" Content="First"/>
+                <Button  Grid.Column="1" Name="btnPrevious" Content="Previous"/>
+                <Grid Grid.Column="2">
+                    <Label Content="Page "/>
+                    <TextBox x:Name="txtPageNumber"/>
+                    <Label Content=" of "/>
+                    <Label x:Name="lblMaxPages"/>
+                </Grid>
+                
+                <Button  Grid.Column="3" Name="btnNext" Content="Next"/>
+                <Button  Grid.Column="4" Name="btnLast" Content="Last"/>
+            </Grid>
+            
+            
+            <Label Grid.Column="2" VerticalAlignment="Center" Content="Rows Per Page:"/>
+            <ComboBox x:Name="btnRowsPerPage"
+                    Grid.Column="2"
+                      Width="60"
+                      HorizontalAlignment="Right"
+            >
+                <ComboBoxItem Content="10"/>
+                <ComboBoxItem Content="20"/>
+                <ComboBoxItem Content="50"/>
+            </ComboBox>
+        </Grid>
 
     </Grid>
 </Window>
