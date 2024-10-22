@@ -37,7 +37,6 @@ begin
 	(@usernameVar,@encryptedPassword)
 end
 go
---exec sp_create_user 'storedProcedureUser', 'storedProcedurePassword'
 
 CREATE procedure sp_update_userDetails
 	@id [uniqueidentifier],
@@ -91,14 +90,14 @@ begin
 end
 go
 
-CREATE procedure sp_get_users
+ALTER procedure sp_get_users
 	@pageNumber int, -- page number variable/parameter
 	@pageSize int, -- rows per page variable/parameter
 	@pageFilters varchar(max)
 as
 begin
 	SELECT
-	*
+	Id, Username
 	FROM Users 
 	ORDER BY id 
 	OFFSET 
@@ -111,5 +110,13 @@ go
 
 
 
-
-	
+CREATE PROCEDURE [sp_get_userPassword] 
+    @username VARCHAR(50)
+AS
+BEGIN
+		SELECT 
+		[Password]
+		FROM Users u
+		WHERE u.[username] = @username 
+END
+GO

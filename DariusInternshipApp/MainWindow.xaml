@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DariusInternshipApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Loaded="Grid_Loaded">
+        Title="MainWindow" MinHeight="1080" MinWidth="1920">
+    <Grid Loaded="Grid_Loaded"  ShowGridLines="True" >
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="35"/>
@@ -17,18 +17,90 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
+
+        <Grid Name="TopPaginationGrid" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="600"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Darius User Management" FontSize="20"/>
+            <Grid 
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+               >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Content="Search:"/>
+                <TextBox Grid.Column="2" Name="txtSearch" />
+                <Button  Grid.Column="3" x:Name="btnSearch" Content="Search" Height="26" VerticalAlignment="Top" Click="btnSearch_Click"/>
+                <Button Grid.Column="4" x:Name="btnClear" Content="Clear Search" Click="btnClear_Click"/>
+            </Grid>
+        </Grid>
         
-        <DataGrid x:Name="UsersTable" 
+        <DataGrid x:Name="UsersTable"
                   Grid.Row="2"
                   Grid.Column="1"
-                  Loaded="UsersTable_Loaded"
+                  Loaded="UsersTable_Loaded" SelectionChanged="UsersTable_SelectionChanged"
+                  IsReadOnly="True" 
         />
+        <Grid
+            Grid.Row="2"
+            Grid.Column="2"
+            HorizontalAlignment="Left"
+            Width="300"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/> 
+                <RowDefinition Height="35"/> <!--User Management Header-->
+                <RowDefinition Height="35"/> <!--Label for GUID-->
+                <RowDefinition Height="35"/> <!--Textbox and Label for username-->
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Content="User Management" FontSize="15" Width="300" Name="lblUserManagement"/>
+            <Grid Grid.Row="2" HorizontalAlignment="Left" Width="300" VerticalAlignment="Center">
+                <Label Content="User UUID:" Width="100" HorizontalAlignment="Left"/>
+                <TextBox x:Name="txtUserUUID" Width="230" IsEnabled="False" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Row="3" HorizontalAlignment="Left" Width="300" VerticalAlignment="Center">
+                <Label Content="Username:" Width="100" HorizontalAlignment="Left"/>
+                <TextBox x:Name="txtUsername" Width="230" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Row="4" HorizontalAlignment="Left" Width="300" VerticalAlignment="Center"  Visibility="Hidden" x:Name="grdPassword">
+                <Label Content="Password:" Width="100" HorizontalAlignment="Left"/>
+                <PasswordBox x:Name="pwdUserPassword" Width="230" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Row="5" HorizontalAlignment="Left" Width="300" VerticalAlignment="Center">
+                <Button Name="btnCancel" Content="Cancel" Width="70" HorizontalAlignment="Left" Margin="10,0,0,0" Click="btnCancel_Click"/>
+                <Button Name="btnDelete" Content="Delete" Width="70" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <Button Name="btnSave" Content="Save" Width="70" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btnSave_Click"/>
+            </Grid>
+            <Grid Grid.Row="6" HorizontalAlignment="Left" Width="300" VerticalAlignment="Center">
+                <Button Name="btnNewUser" Content="Add New User" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0" Click="btnNewUser_Click"/>
+            </Grid>
+            <Grid Grid.Row="7" HorizontalAlignment="Left" Width="300" VerticalAlignment="Center">
+                <TextBox x:Name="txtLoginUsername" Width="100" HorizontalAlignment="Left"/>
+                <PasswordBox x:Name="pwdLoginPassword" Width="100" HorizontalAlignment="Center"/>
+                <Button x:Name="btnLogin" Content="login" Width="40" HorizontalAlignment="Right" Click="btnLogin_Click" />
+            </Grid>
+        </Grid>
         
         <Grid Name="BottomPaginationGrid"
               Grid.Row="3"
               Grid.Column="1"
+              Grid.ColumnSpan="2"
         >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
@@ -39,33 +111,43 @@
                   Grid.Column="1"
                   >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Name="btnFirst" Content="First"/>
-                <Button  Grid.Column="1" Name="btnPrevious" Content="Previous"/>
-                <Grid Grid.Column="2">
-                    <Label Content="Page "/>
-                    <TextBox x:Name="txtPageNumber"/>
-                    <Label Content=" of "/>
-                    <Label x:Name="lblMaxPages"/>
+                <Button Grid.Column="1" Name="btnFirst" Content="First Page" Click="btnFirst_Click"/>
+                <Button  Grid.Column="2" Name="btnPrevious" Content="Previous Page" Click="btnPrevious_Click"/>
+                <Grid Grid.Column="3" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/> <!--page-->
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/> <!--of-->
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Content="Page "/>
+                    <TextBox Grid.Column="2" x:Name="txtPageNumber" />
+                    <Label Grid.Column="3" Content=" of "/>
+                    <Label Grid.Column="4" x:Name="lblMaxPages"/>
                 </Grid>
                 
-                <Button  Grid.Column="3" Name="btnNext" Content="Next"/>
-                <Button  Grid.Column="4" Name="btnLast" Content="Last"/>
+                <Button  Grid.Column="4" Name="btnNext" Content="Next Page" Click="btnNext_Click"/>
+                <Button  Grid.Column="5" Name="btnLast" Content="Last Page" Click="btnLast_Click"/>
             </Grid>
             
             
             <Label Grid.Column="2" VerticalAlignment="Center" Content="Rows Per Page:"/>
-            <ComboBox x:Name="btnRowsPerPage"
+            <ComboBox x:Name="cmbRowsPerPage"
                     Grid.Column="2"
                       Width="60"
-                      HorizontalAlignment="Right"
+                      HorizontalAlignment="Right" SelectionChanged="btnRowsPerPage_SelectionChanged"
             >
-                <ComboBoxItem Content="10"/>
+                <ComboBoxItem Content="10" IsSelected="True"/>
                 <ComboBoxItem Content="20"/>
                 <ComboBoxItem Content="50"/>
             </ComboBox>
