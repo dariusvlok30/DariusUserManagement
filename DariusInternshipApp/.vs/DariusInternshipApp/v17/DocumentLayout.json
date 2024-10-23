@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,32 +30,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 170,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Login.xaml.cs",
               "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
               "RelativeDocumentMoniker": "Login.xaml.cs",
               "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
               "RelativeToolTip": "Login.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAEwDoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-22T11:18:07.926Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.xaml",
-              "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml",
-              "RelativeDocumentMoniker": "Login.xaml",
-              "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml",
-              "RelativeToolTip": "Login.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-22T11:16:32.806Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -78,7 +61,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "AssemblyInfo.cs",
@@ -87,18 +70,17 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-22T11:17:02.01Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAABgBAAAAAAAAAAAmwCwBAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAQwC0AAACOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-21T12:02:17.868Z",
               "IsPinned": true,
@@ -106,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -114,8 +96,7 @@
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-10-21T12:02:20.189Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             }
           ]
         }

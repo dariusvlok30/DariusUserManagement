@@ -6,7 +6,34 @@
         xmlns:local="clr-namespace:DariusInternshipApp"
         mc:Ignorable="d"
         Title="Login" Height="450" Width="800">
-    <Grid>
-        
+    <Grid x:Name="LoginGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Visible">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Login" FontSize="20" HorizontalAlignment="Center"/>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Label Content="Username:" HorizontalAlignment="Left" Width="100"/>
+            <TextBox x:Name="txtLoginUsername" Width="200" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Center">
+            <Label Content="Password:" HorizontalAlignment="Left" Width="100"/>
+            <PasswordBox x:Name="pwdLoginPassword" Width="200" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="3" HorizontalAlignment="Center">
+            <Button x:Name="btnLogin" Content="Login" Width="100" Click="btnLogin_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="4" HorizontalAlignment="Center">
+            <Label x:Name="lblLoginMessage" Foreground="Red" HorizontalAlignment="Center"/>
+        </Grid>
     </Grid>
+
 </Window>
