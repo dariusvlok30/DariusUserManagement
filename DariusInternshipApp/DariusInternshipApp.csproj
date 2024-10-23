@@ -6,10 +6,23 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <StartupObject>DariusInternshipApp.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\vecteezy_co-working-business-team-consulting-meeting-planning_7389853.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\vecteezy_co-working-business-team-consulting-meeting-planning_7389853.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.10" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="5.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 

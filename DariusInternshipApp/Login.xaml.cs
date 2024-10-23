@@ -13,13 +13,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace DariusInternshipApp
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login
     {
         private string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=DariusInternship;Trusted_Connection=True;";
 
@@ -55,7 +56,7 @@ namespace DariusInternshipApp
 
             if (hashedPassword != "" && BCrypt.Net.BCrypt.Verify(pwdLoginPassword.Password, hashedPassword))
             {
-                MainWindow  mainWindow = new MainWindow();
+                UserManagement mainWindow = new UserManagement();
                 this.Close();
                 mainWindow.Show();
             }
