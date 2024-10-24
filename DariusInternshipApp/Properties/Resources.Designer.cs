@@ -69,5 +69,15 @@ namespace DariusInternshipApp.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] vecteezy_co_working_business_team_consulting_meeting_planning_7389853 {
+            get {
+                object obj = ResourceManager.GetObject("vecteezy_co-working-business-team-consulting-meeting-planning_7389853", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

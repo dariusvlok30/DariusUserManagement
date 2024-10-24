@@ -121,4 +121,7 @@
   <data name="1-1ddca1a5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1-1ddca1a5.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="vecteezy_co-working-business-team-consulting-meeting-planning_7389853" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vecteezy_co-working-business-team-consulting-meeting-planning_7389853.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

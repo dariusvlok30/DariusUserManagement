@@ -22,6 +22,7 @@ namespace DariusInternshipApp
     public partial class UserManagement
     {
         #region Variables
+        public string userUUID = "";
         private int iMaxPages = 0;
         private int iPageNumber = 0;
         private bool bIsLoading = true;
@@ -40,14 +41,15 @@ namespace DariusInternshipApp
         public UserManagement()
         {
             InitializeComponent();
-            // alles onder hier fire as die default constructor klaar geload het.
+            // populate user management
             LoadMaxPages();
-            LoadDataGrid(0);// first we hardcode it to go to page 1, which means we need to pass it 0.
+            LoadDataGrid(0);
             lblUserManagement.Content = sUserMangement;
+            LoadAuditsGrid();
             bIsLoading = false;
         }
 
-        private void LoadMaxPages()
+        private void LoadMaxPages(string rowsPerPage) 
         {
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
@@ -55,7 +57,7 @@ namespace DariusInternshipApp
                 using (SqlCommand command = new SqlCommand("sp_get_usersMaxPaging", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("pageSize", ((ComboBoxItem)cmbRowsPerPage.SelectedItem).Content.ToString());
+                    command.Parameters.AddWithValue("pageSize", rowsPerPage);
                     command.Parameters.AddWithValue("pageFilters", "");
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
@@ -73,6 +75,11 @@ namespace DariusInternshipApp
                     }
                 }
             }
+        }
+
+        private void LoadMaxPages()
+        {
+            LoadMaxPages(((ComboBoxItem)cmbRowsPerPage.SelectedItem).Content.ToString());
         }
 
         private void LoadDataGrid(int pageNumber)
@@ -218,6 +225,7 @@ namespace DariusInternshipApp
             grdPassword.Visibility = Visibility.Hidden;
             lblUserManagement.Content = sUserMangement;
             lblNotify.Content = sNotifaction + "Action Cancelled";
+            InsertAudit("Action Cancelled");
         }
 
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
@@ -247,6 +255,7 @@ namespace DariusInternshipApp
                         command.ExecuteNonQuery();
                         LoadDataGrid(0);
                         lblNotify.Content = sNotifaction + "User " + txtUsername.Text + " Created";
+                        InsertAudit("User " + txtUsername.Text + " Created");
 
                     }
                 }
@@ -264,11 +273,14 @@ namespace DariusInternshipApp
                         command.ExecuteNonQuery();
                         LoadDataGrid(0);
                         lblNotify.Content = sNotifaction + "User " + txtUsername.Text + " Updated";
+                        InsertAudit("User " + txtUsername.Text + " Updated");
                     }
                 }
             }
             grdPassword.Visibility = Visibility.Hidden;
             pwdUserPassword.Clear();
+            txtUsername.Clear();
+            txtUserUUID.Clear();
 
         }
 
@@ -284,6 +296,10 @@ namespace DariusInternshipApp
                     command.ExecuteNonQuery();
                     lblNotify.Content = sNotifaction + "User " + txtUsername.Text + " Deleted";
                     LoadDataGrid(0);
+                    InsertAudit("User " + txtUsername.Text + " Deleted");
+                    lblUserManagement.Content = sUserMangement;
+                    txtUserUUID.Clear();
+                    txtUsername.Clear();
                 }
             }
         }
@@ -293,6 +309,50 @@ namespace DariusInternshipApp
         private void txtPageNumber_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!bIsLoading) 
+            {
+                if ((sender as TabControl).SelectedIndex.Equals(1))
+                {
+                    LoadAuditsGrid();
+                }
+            }
+        }
+
+        private void LoadAuditsGrid() 
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            {
+                using (SqlCommand command = new SqlCommand("select * from vw_audit order by dateOfChange asc", connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                    AuditTable.ItemsSource = dt.DefaultView;
+                }
+            }
+        }
+
+        private void InsertAudit(string descriptionOfChange)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            {
+                using (SqlCommand command = new SqlCommand("sp_insert_audit", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("userUUID", userUUID);
+                    command.Parameters.AddWithValue("changeDescription", descriptionOfChange);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

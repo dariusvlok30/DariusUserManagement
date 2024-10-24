@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("1-1ddca1a5.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/vecteezy_co-working-business-team-consulting-meeting-planning_7389853.jpg")]
 
 

@@ -1,5 +1,4 @@
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\bin\Debug\net8.0-windows\DariusInternshipApp.exe
-C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\bin\Debug\net8.0-windows\Images\vecteezy_co-working-business-team-consulting-meeting-planning_7389853.jpg
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\bin\Debug\net8.0-windows\DariusInternshipApp.deps.json
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\bin\Debug\net8.0-windows\DariusInternshipApp.runtimeconfig.json
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\bin\Debug\net8.0-windows\DariusInternshipApp.dll
@@ -57,12 +56,13 @@ C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Deb
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\Login.g.cs
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\UserManagement.g.cs
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\App.g.cs
-C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp_Content.g.cs
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp_MarkupCompile.cache
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp_MarkupCompile.lref
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\Login.baml
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\UserManagement.baml
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.g.resources
+C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.Properties.Resources.resources
+C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.csproj.GenerateResource.cache
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.AssemblyInfoInputs.cache
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.AssemblyInfo.cs
@@ -74,5 +74,3 @@ C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Deb
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.pdb
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.genruntimeconfig.cache
 C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\ref\DariusInternshipApp.dll
-C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.Properties.Resources.resources
-C:\Users\dariu\Documents\GitHub\DariusUserManagement\DariusInternshipApp\obj\Debug\net8.0-windows\DariusInternshipApp.csproj.GenerateResource.cache

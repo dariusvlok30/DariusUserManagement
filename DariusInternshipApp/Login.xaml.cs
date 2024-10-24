@@ -37,6 +37,7 @@ namespace DariusInternshipApp
         {
             DataTable dt = new DataTable();
             string hashedPassword = "";
+            string loggedInUserUUID = "";
             using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
             {
                 using (SqlCommand command = new SqlCommand("sp_get_userPassword", connection))
@@ -50,6 +51,7 @@ namespace DariusInternshipApp
                     foreach (DataRow row in dt.Rows)
                     {
                         hashedPassword = row["Password"].ToString();
+                        loggedInUserUUID = row["id"].ToString();
                     }
                 }
             }
@@ -57,6 +59,7 @@ namespace DariusInternshipApp
             if (hashedPassword != "" && BCrypt.Net.BCrypt.Verify(pwdLoginPassword.Password, hashedPassword))
             {
                 UserManagement mainWindow = new UserManagement();
+                mainWindow.userUUID = loggedInUserUUID;
                 this.Close();
                 mainWindow.Show();
             }
