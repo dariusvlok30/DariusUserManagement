@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\usermanagement.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:usermanagement.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\usermanagement.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:usermanagement.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\usermanagement.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:usermanagement.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,29 +22,42 @@
       "DocumentGroups": [
         {
           "DockedWidth": 205,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UserManagement.xaml",
               "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml",
               "RelativeDocumentMoniker": "UserManagement.xaml",
               "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml",
               "RelativeToolTip": "UserManagement.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-24T09:32:19.986Z",
+              "WhenOpened": "2024-10-24T12:24:32.132Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "Login.xaml.cs",
+              "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
+              "RelativeToolTip": "Login.xaml.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwEQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T12:15:11.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "UserManagement.xaml.cs",
               "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml.cs",
               "RelativeDocumentMoniker": "UserManagement.xaml.cs",
               "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml.cs",
               "RelativeToolTip": "UserManagement.xaml.cs",
-              "ViewState": "AgIAABMBAAAAAAAAAAAvwC0BAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAACUBAAAAAAAAAAAuwC4BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-24T09:08:41.756Z",
               "EditorCaption": ""

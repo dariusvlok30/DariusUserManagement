@@ -215,6 +215,10 @@
                                 <Label Content="Username:" Foreground="#79BEA8" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <TextBox x:Name="txtUsername" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
                             </StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="300">
+                                <Label Content="Role:" Foreground="#79BEA8" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="cmbRole" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="300" Name="grdPassword">
                                 <Label Content="Password:" Foreground="#79BEA8" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <PasswordBox x:Name="pwdUserPassword" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
@@ -284,7 +288,14 @@
             </TabItem>
             <TabItem Header="Audits" >
                 <Grid Background="#448D76">
-                    <DataGrid x:Name="AuditTable" Margin="10,10,10,10" IsReadOnly="True" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Background="#093426" Grid.Row="0">
+                        <Label Margin="50,0,0,0" Foreground="GreenYellow" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Note: Only Admins can view this page"/>
+                    </Grid>
+                    <DataGrid Grid.Row="1" x:Name="AuditTable" Margin="10,10,30,10" IsReadOnly="True" />
                 </Grid>
             </TabItem>
         </TabControl>

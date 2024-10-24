@@ -23,6 +23,8 @@ namespace DariusInternshipApp
     {
         #region Variables
         public string userUUID = "";
+        public string userRoleID = "";
+        public string userRoleName = "";
         private int iMaxPages = 0;
         private int iPageNumber = 0;
         private bool bIsLoading = true;
@@ -45,7 +47,10 @@ namespace DariusInternshipApp
             LoadMaxPages();
             LoadDataGrid(0);
             lblUserManagement.Content = sUserMangement;
-            LoadAuditsGrid();
+            if (userRoleName.Equals("Admin")) {
+                LoadAuditsGrid();
+            }
+            LoadRoles();
             bIsLoading = false;
         }
 
@@ -196,6 +201,17 @@ namespace DariusInternshipApp
                 DataGridCell RowColumnUsername = dataGrid.Columns[1].GetCellContent(row).Parent as DataGridCell;
                 txtUsername.Text = ((TextBlock)RowColumnUsername.Content).Text;
 
+                DataGridCell RowColumnRoleID = dataGrid.Columns[2].GetCellContent(row).Parent as DataGridCell;
+                if (RowColumnRoleID != null)
+                {
+                    cmbRole.SelectedValue = ((TextBlock)RowColumnRoleID.Content).Text;
+                }
+                else
+                {
+                    cmbRole.SelectedIndex = -1;
+                }
+               
+
                 if (!txtUserUUID.Text.Equals(""))
                 {
                     pwdUserPassword.Clear();
@@ -203,6 +219,7 @@ namespace DariusInternshipApp
                     chosenAction = userAction.Edit;
                     lblUserManagement.Content = sUserMangement + " - Update User";
                     btnDelete.Visibility = Visibility.Visible;
+
                 }
                 else
                 {
@@ -251,6 +268,7 @@ namespace DariusInternshipApp
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("usernameVar", txtUsername.Text);
                         command.Parameters.AddWithValue("encryptedPassword", BCrypt.Net.BCrypt.HashPassword(pwdUserPassword.Password));
+                        command.Parameters.AddWithValue("roleID", cmbRole.SelectedValue);
                         connection.Open();
                         command.ExecuteNonQuery();
                         LoadDataGrid(0);
@@ -269,6 +287,7 @@ namespace DariusInternshipApp
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("id", txtUserUUID.Text);
                         command.Parameters.AddWithValue("usernameVar", txtUsername.Text);
+                        command.Parameters.AddWithValue("roleID", cmbRole.SelectedValue);
                         connection.Open();
                         command.ExecuteNonQuery();
                         LoadDataGrid(0);
@@ -317,7 +336,10 @@ namespace DariusInternshipApp
             {
                 if ((sender as TabControl).SelectedIndex.Equals(1))
                 {
-                    LoadAuditsGrid();
+                    if (userRoleName.Equals("Admin"))
+                    {
+                        LoadAuditsGrid();
+                    }
                 }
             }
         }
@@ -351,6 +373,29 @@ namespace DariusInternshipApp
                     command.Parameters.AddWithValue("changeDescription", descriptionOfChange);
                     connection.Open();
                     command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void LoadRoles()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            {
+                using (SqlCommand command = new SqlCommand("select * from vw_role", connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                    cmbRole.Items.Clear();
+                    List<KeyValuePair<string, string>> lKvpForRoles = new List<KeyValuePair<string, string>>();
+                    foreach (DataRow dr in dt.Rows) 
+                    {
+                        lKvpForRoles.Add(new KeyValuePair<string, string>(dr["id"].ToString(), dr["description"].ToString()));
+                    }
+                    cmbRole.ItemsSource = lKvpForRoles;
                 }
             }
         }

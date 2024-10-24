@@ -38,6 +38,8 @@ namespace DariusInternshipApp
             DataTable dt = new DataTable();
             string hashedPassword = "";
             string loggedInUserUUID = "";
+            string roleID = "";
+            string roleName = "";
             using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
             {
                 using (SqlCommand command = new SqlCommand("sp_get_userPassword", connection))
@@ -52,6 +54,8 @@ namespace DariusInternshipApp
                     {
                         hashedPassword = row["Password"].ToString();
                         loggedInUserUUID = row["id"].ToString();
+                        roleID = row["roleID"].ToString();
+                        roleName = row["roleName"].ToString();
                     }
                 }
             }
@@ -60,6 +64,8 @@ namespace DariusInternshipApp
             {
                 UserManagement mainWindow = new UserManagement();
                 mainWindow.userUUID = loggedInUserUUID;
+                mainWindow.userRoleID = roleID;
+                mainWindow.userRoleName = roleName;
                 this.Close();
                 mainWindow.Show();
             }
