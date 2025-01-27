@@ -22,8 +22,9 @@ namespace DariusInternshipApp
     /// </summary>
     public partial class Login
     {
-        private string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=DariusInternship;Trusted_Connection=True;";
-
+        //private string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=DariusInternship;Trusted_Connection=True;";
+        private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
+       
         public Login()
         {
             InitializeComponent();
@@ -35,6 +36,20 @@ namespace DariusInternshipApp
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            //using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            //{
+            //    using (SqlCommand command = new SqlCommand("sp_create_user", connection))
+            //    {
+            //        command.CommandType = CommandType.StoredProcedure;
+            //        command.Parameters.AddWithValue("usernameVar", "123");
+            //        command.Parameters.AddWithValue("encryptedPassword", BCrypt.Net.BCrypt.HashPassword("123"));
+            //        command.Parameters.AddWithValue("roleID", "649B9982-C825-4F35-B57F-F53776AF4FC4");
+            //        connection.Open();
+            //        command.ExecuteNonQuery();
+
+            //    }
+            //}
+
             DataTable dt = new DataTable();
             string hashedPassword = "";
             string loggedInUserUUID = "";

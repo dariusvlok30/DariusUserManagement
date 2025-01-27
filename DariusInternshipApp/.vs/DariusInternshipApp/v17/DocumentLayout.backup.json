@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\",
+  "WorkspaceRootPath": "C:\\Users\\brand\\OneDrive\\Documents\\Projects\\DariusUserManagement\\DariusUserManagement\\DariusInternshipApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\usermanagement.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\brand\\onedrive\\documents\\projects\\dariususermanagement\\dariususermanagement\\dariusinternshipapp\\usermanagement.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:usermanagement.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\usermanagement.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\brand\\onedrive\\documents\\projects\\dariususermanagement\\dariususermanagement\\dariusinternshipapp\\usermanagement.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:usermanagement.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\dariu\\documents\\github\\dariususermanagement\\dariusinternshipapp\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|c:\\users\\brand\\onedrive\\documents\\projects\\dariususermanagement\\dariususermanagement\\dariusinternshipapp\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{309D8355-AD93-46FA-8DBA-58A1B9F8289C}|DariusInternshipApp.csproj|solutionrelative:login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -28,39 +28,37 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UserManagement.xaml",
-              "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml",
+              "DocumentMoniker": "C:\\Users\\brand\\OneDrive\\Documents\\Projects\\DariusUserManagement\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml",
               "RelativeDocumentMoniker": "UserManagement.xaml",
-              "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml",
+              "ToolTip": "C:\\Users\\brand\\OneDrive\\Documents\\Projects\\DariusUserManagement\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml",
               "RelativeToolTip": "UserManagement.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-24T12:24:32.132Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
-              "RelativeDocumentMoniker": "Login.xaml.cs",
-              "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
-              "RelativeToolTip": "Login.xaml.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAwwEQAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T12:15:11.671Z",
+              "WhenOpened": "2025-01-27T19:47:11.943Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UserManagement.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\brand\\OneDrive\\Documents\\Projects\\DariusUserManagement\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml.cs",
               "RelativeDocumentMoniker": "UserManagement.xaml.cs",
-              "ToolTip": "C:\\Users\\dariu\\Documents\\GitHub\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml.cs",
+              "ToolTip": "C:\\Users\\brand\\OneDrive\\Documents\\Projects\\DariusUserManagement\\DariusUserManagement\\DariusInternshipApp\\UserManagement.xaml.cs",
               "RelativeToolTip": "UserManagement.xaml.cs",
-              "ViewState": "AgIAACUBAAAAAAAAAAAuwC4BAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T09:08:41.756Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T19:41:38.949Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\brand\\OneDrive\\Documents\\Projects\\DariusUserManagement\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "Login.xaml.cs",
+              "ToolTip": "C:\\Users\\brand\\OneDrive\\Documents\\Projects\\DariusUserManagement\\DariusUserManagement\\DariusInternshipApp\\Login.xaml.cs",
+              "RelativeToolTip": "Login.xaml.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwDQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T19:41:28.787Z"
             }
           ]
         }

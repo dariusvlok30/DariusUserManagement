@@ -37,7 +37,14 @@ namespace DariusInternshipApp
             Edit,
             None
         }
-        public static string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=DariusInternship;Trusted_Connection=True;";
+        //public static string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=DariusInternship;Trusted_Connection=True;";
+        private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
+        private static string connectionString = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
+
+        private List<Part> listParts = new List<Part>();
+        private List<PartMovement> listPartsMovement = new List<PartMovement>();
+        private List<PartCategory> listPartCategory = new List<PartCategory>();
+
         #endregion
 
         public UserManagement()
@@ -399,5 +406,346 @@ namespace DariusInternshipApp
                 }
             }
         }
+
+        #region parts
+
+        public DataTable getParts()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string strSelectionQuery = "select * from vw_parts";
+                    if (cmbPartCategory.SelectedIndex > 0)
+                    {
+                        strSelectionQuery += " where partsCategoryID = " + cmbPartCategory.SelectedValue;
+                    }
+
+                    using (SqlCommand command = new SqlCommand(strSelectionQuery, connection))
+                    {
+                        command.CommandType = CommandType.Text;
+                        IDataReader iDataReader = command.ExecuteReader();
+                        dataTable.Load(iDataReader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return dataTable;
+        }
+
+        public void LoadPartsDataGrid()
+        {
+            try
+            {
+                listParts.Clear();
+                DataTable dtParts = getParts();
+                foreach (DataRow row in dtParts.Rows)
+                {
+                    Part part = new Part();
+                    part.id = Convert.ToInt32(row["id"]);
+                    part.partNumber = row["partNumber"].ToString();
+
+                    part.name = row["name"].ToString();
+                    part.description = row["description"].ToString();
+                    part.pricePerUnit = Convert.ToDouble(row["pricePerUnit"].ToString());
+                    part.expectedStock = Convert.ToInt32(row["expectedStock"].ToString());
+                    part.stockOnHand = Convert.ToInt32(row["stockOnHand"].ToString());
+                    part.stockToOrder = Convert.ToInt32(row["stockToOrder"].ToString());
+                    part.priceForStockOnHand = Convert.ToDouble(row["priceForStockOnHand"].ToString());
+                    part.partCategoryID = Convert.ToInt32(row["partCategoryID"].ToString());
+                    part.partCategoryName = row["partCategoryName"].ToString();
+                    listParts.Add(part);
+                }
+
+                dgPartsManagement.ItemsSource = null;
+                dgPartsManagement.ItemsSource = listParts;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public DataTable getPartsMovement()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string strSelectionQuery = $"select * from vw_partsMovement where [partsID] = {txtEditPartID.Text}";
+
+                    using (SqlCommand command = new SqlCommand(strSelectionQuery, connection))
+                    {
+                        command.CommandType = CommandType.Text;
+                        IDataReader iDataReader = command.ExecuteReader();
+                        dataTable.Load(iDataReader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return dataTable;
+        }
+
+        public void LoadPartsMovementDataGrid()
+        {
+            try
+            {
+                listPartsMovement.Clear();
+                DataTable dtPartsMovement = getPartsMovement();
+                foreach (DataRow row in dtPartsMovement.Rows)
+                {
+                    PartMovement part = new PartMovement();
+                    part.id = Convert.ToInt32(row["id"]);
+                    part.price = Convert.ToDouble(row["price"].ToString());
+                    part.stockOnHand = Convert.ToInt32(row["stockOnHand"].ToString());
+                    part.partsID = Convert.ToInt32(row["partsID"]);
+                    part.dateAltered = Convert.ToDateTime(row["dateAltered"].ToString());
+                    listPartsMovement.Add(part);
+                }
+
+                dgPartsMovement.ItemsSource = null;
+                dgPartsMovement.ItemsSource = listPartsMovement;
+                dgPartsMovement.Columns[0].Visibility = Visibility.Collapsed;
+                dgPartsMovement.Columns[3].Visibility = Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public DataTable getPartsCategories()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("select * from vw_partsCategories", connection))
+                    {
+                        command.CommandType = CommandType.Text;
+                        IDataReader iDataReader = command.ExecuteReader();
+                        dataTable.Load(iDataReader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return dataTable;
+        }
+
+        public void LoadPartsCategoriesDropdowns()
+        {
+            PartCategory partCategoryAll = new PartCategory() { id = -1, name = "All" };
+
+            listPartCategory.Clear();
+            listPartCategory.Add(partCategoryAll);
+            DataTable dtParts = getPartsCategories();
+            foreach (DataRow row in dtParts.Rows)
+            {
+                PartCategory partCategory = new PartCategory();
+                partCategory.id = Convert.ToInt32(row["id"]);
+                partCategory.name = row["name"].ToString();
+                listPartCategory.Add(partCategory);
+            }
+
+            cmbPartCategory.ItemsSource = listPartCategory;
+            cmbPartCategory.SelectedIndex = 0;
+
+            listPartCategory.Remove(partCategoryAll);
+            cmbEditPartCategory.ItemsSource = listPartCategory;
+            cmbEditPartCategory.SelectedIndex = -1;
+
+        }
+
+
+        private void btnCancelParts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteParts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion parts
+
+        private void txtPageNumber_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnCapture_Click(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("sp_insert_partsMovement", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("partID", txtEditPartID.Text);
+                    command.Parameters.AddWithValue("partPrice", txtEditPartPrice.Text);
+                    command.Parameters.AddWithValue("stockOnHand", txtEditPartStockOnHand.Text);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            LoadPartsDataGrid();
+            LoadPartsMovementDataGrid();
+        }
+
+        private void cmbPartCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadPartsDataGrid();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadPartsDataGrid();
+            LoadPartsCategoriesDropdowns();
+        }
+
+        private void btnSaveParts_Click(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("sp_update_parts", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("partID", txtEditPartID.Text);
+                    command.Parameters.AddWithValue("partName", txtEditPartName.Text);
+                    command.Parameters.AddWithValue("partNumber", txtEditPartNumber.Text);
+                    command.Parameters.AddWithValue("partpartsCategoryID", cmbEditPartCategory.SelectedValue);
+                    command.Parameters.AddWithValue("partPrice", txtEditPartPrice.Text);
+                    command.Parameters.AddWithValue("partExpectedStock", txtEditPartExpectedStock.Text);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            LoadPartsDataGrid();
+        }
+
+        private void dgPartsManagement_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid = sender as DataGrid;
+            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+
+            if (row != null)
+            {
+                DataGridCell RowColumnID = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
+                txtEditPartID.Text = ((TextBlock)RowColumnID.Content).Text;
+
+                DataGridCell RowColumnPartNumber = dataGrid.Columns[1].GetCellContent(row).Parent as DataGridCell;
+                txtEditPartNumber.Text = ((TextBlock)RowColumnPartNumber.Content).Text;
+
+                DataGridCell RowColumnPartName = dataGrid.Columns[2].GetCellContent(row).Parent as DataGridCell;
+                txtEditPartName.Text = ((TextBlock)RowColumnPartName.Content).Text;
+
+                DataGridCell RowColumnPartPrice = dataGrid.Columns[4].GetCellContent(row).Parent as DataGridCell;
+                txtEditPartPrice.Text = ((TextBlock)RowColumnPartPrice.Content).Text;
+
+                DataGridCell RowColumnPartExpectedStock = dataGrid.Columns[5].GetCellContent(row).Parent as DataGridCell;
+                txtEditPartExpectedStock.Text = ((TextBlock)RowColumnPartExpectedStock.Content).Text;
+
+                DataGridCell RowColumnPartStockOnHand = dataGrid.Columns[6].GetCellContent(row).Parent as DataGridCell;
+                txtEditPartStockOnHand.Text = ((TextBlock)RowColumnPartStockOnHand.Content).Text;
+
+                LoadPartsMovementDataGrid();
+
+                DataGridCell RowColumnPartCategoryID = dataGrid.Columns[9].GetCellContent(row).Parent as DataGridCell;
+                if (RowColumnPartCategoryID != null)
+                {
+                    cmbEditPartCategory.SelectedValue = ((TextBlock)RowColumnPartCategoryID.Content).Text;
+                }
+                else
+                {
+                    cmbEditPartCategory.SelectedIndex = -1;
+                }
+
+
+                if (!txtEditPartID.Text.Equals(""))
+                {
+                    //lblUserManagement.Content = sUserMangement + " - Update User";
+                    btnDelete.Visibility = Visibility.Visible;
+
+                }
+                else
+                {
+                    btnDelete.Visibility = Visibility.Hidden;
+                }
+            }
+        }
+
+        private void btnPartsSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnPartsClear_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmbPartsRowsPerPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    }
+
+    public class Part
+    {
+        public int id { get; set; }
+        public string? partNumber { get; set; }
+        public string? name { get; set; }
+        public string? description { get; set; }
+        public double pricePerUnit { get; set; }
+        public int expectedStock { get; set; }
+        public int stockOnHand { get; set; }
+        public int stockToOrder { get; set; }
+        public double priceForStockOnHand { get; set; }
+        public int? partCategoryID { get; set; }
+        public string? partCategoryName { get; set; }
+    }
+
+    public class PartCategory
+    {
+        public int id { get; set; }
+        public string? name { get; set; }
+    }
+
+    public class PartMovement
+    {
+        public int id { get; set; }
+        public double price { get; set; }
+        public int stockOnHand { get; set; }
+        public int partsID { get; set; }
+        public DateTime dateAltered { get; set; }
     }
 }

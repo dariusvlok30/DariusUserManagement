@@ -8,7 +8,7 @@
         Title="User Management" Width="1000" Height="650"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Icon="Resources/1-1ddca1a5.ico">
+        Icon="Resources/1-1ddca1a5.ico" Loaded="Window_Loaded">
     <Grid>
         <TabControl Width="1000" Height="600" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="User Management" IsSelected="True">
@@ -297,6 +297,161 @@
                     </Grid>
                     <DataGrid Grid.Row="1" x:Name="AuditTable" Margin="10,10,30,10" IsReadOnly="True" />
                 </Grid>
+            </TabItem>
+            <TabItem Header="Part Management" IsSelected="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Search bar-->
+                    <Grid Grid.Column="0" VerticalAlignment="Center" Background="#448D76" Height="35">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" VerticalAlignment="Center" Content="Category" Foreground="#79BEA8"/>
+                        <ComboBox Grid.Column="1" x:Name="cmbPartCategory" Height="26" SelectionChanged="cmbPartCategory_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id"/>
+
+                        <TextBox Grid.Column="3" Name="txtPartsSearch" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+                        <Button  Grid.Column="4" x:Name="btnPartsSearch" Width="70"  Margin="0,0,10,0" Content="Search" Height="26" Click="btnPartsSearch_Click"/>
+                        <Button Grid.Column="5" x:Name="btnPartsClear" Width="70" Height="26" Margin="0,0,10,0" Content="Clear Search" Click="btnPartsClear_Click" />
+
+
+                    </Grid>
+
+                    <DataGrid Grid.Row="1" x:Name="dgPartsManagement" Margin="10,10,10,10" IsReadOnly="True" SelectionChanged="dgPartsManagement_SelectionChanged"/>
+
+                    <!--Bottom Pagination Elements-->
+                    <Grid Name="partsBottomPaginationGrid" Grid.Row="2" Grid.Column="0" Background="#448D76" >
+
+                        <Grid Name="partsCenterPaginationGrid" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="110"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Width="60" Name="btnPartsFirst" Height="26" Margin="0,0,10,0" Content="First" Click="btnFirst_Click" />
+
+
+                                <Button Width="65" Name="btnPartsPrevious" Height="26" Margin="0,0,10,0" Content="Previous" Click="btnPrevious_Click"/>
+
+
+                                <Grid VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="35"/>
+                                        <!--page-->
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="25"/>
+                                        <!--of-->
+                                        <ColumnDefinition Width="35"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="1" Content="Page " Foreground="#79BEA8"/>
+                                    <ComboBox Grid.Column="2" x:Name="txtPartsPageNumber" Height="26" Width="60" SelectionChanged="txtPageNumber_SelectionChanged_1"/>
+                                    <Label Grid.Column="3" Content=" of " Foreground="#79BEA8"/>
+                                    <Label Grid.Column="4" x:Name="lblPartsMaxPages" Foreground="#79BEA8"/>
+                                </Grid>
+                                <Button Width="65" Name="btnPartsNext" Height="26" Margin="0,0,10,0" Click="btnNext_Click" Content="Next"/>
+
+
+                                <Button Width="65" Name="btnPartsLast" Height="26" Margin="0,0,10,0" Content="Last" Click="btnLast_Click" />
+
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                                <Label VerticalAlignment="Center" Content="Rows:" Foreground="#79BEA8"/>
+                                <ComboBox x:Name="cmbPartsRowsPerPage" Height="26" Width="60" HorizontalAlignment="Right" SelectionChanged="cmbPartsRowsPerPage_SelectionChanged">
+                                    <ComboBoxItem Content="10" IsSelected="True"/>
+                                    <ComboBoxItem Content="20"/>
+                                    <ComboBoxItem Content="50"/>
+                                </ComboBox>
+                            </StackPanel>
+
+
+                        </Grid>
+
+
+
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" HorizontalAlignment="Center" Background="#448D76" Width="350">
+                        <StackPanel>
+                            <Label Content="Part Management" FontSize="18" Foreground="#79BEA8" Name="lblPartManagement" Height="35" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="ID:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEditPartID" Height="26"  Margin="0,5,0,5" Width="250" IsEnabled="False" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="Number:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEditPartNumber" Height="26"  Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="Name:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEditPartName" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="Category:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="cmbEditPartCategory" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right" DisplayMemberPath="name" SelectedValuePath="id"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="Price:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEditPartPrice" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="Expected Stock:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEditPartExpectedStock" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Center">
+                                <Button Name="btnCancelParts" Content="Cancel" Width="70" Height="26" HorizontalAlignment="Left" Margin="10,0,10,0" Click="btnCancelParts_Click"/>
+
+                                <Button Name="btnDeleteParts" Content="Delete" Width="70" Height="26" HorizontalAlignment="Center" Visibility="Hidden" Margin="10,0,10,0" Click="btnDeleteParts_Click"/>
+
+                                <Button Name="btnSaveParts" Content="Save" Width="50" Height="26" HorizontalAlignment="Right" Margin="10,0,10,0" Click="btnSaveParts_Click"/>
+
+                            </StackPanel>
+
+
+
+
+
+
+                            <Label Content="Part Movement" FontSize="18" Foreground="#79BEA8" Name="lblPartMovement" Height="35" HorizontalAlignment="Center"/>
+
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="Stock On Hand:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEditPartStockOnHand" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Center">
+                                <Button Name="btnPartCapture" Content="Capture" Width="50" Height="26" HorizontalAlignment="Right" Margin="10,0,10,0" Click="btnCapture_Click"/>
+                            </StackPanel>
+                            <DataGrid x:Name="dgPartsMovement" Margin="10,10,10,10" IsReadOnly="True"/>
+                        </StackPanel>
+                    </Grid>
+
+
+                </Grid>
+
+
+
             </TabItem>
         </TabControl>
 
