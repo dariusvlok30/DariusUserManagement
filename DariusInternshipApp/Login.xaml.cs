@@ -22,8 +22,8 @@ namespace DariusInternshipApp
     /// </summary>
     public partial class Login
     {
-        //private string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=DariusInternship;Trusted_Connection=True;";
-        private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
+        private string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=LeaderTrailers;Trusted_Connection=True;";
+        //private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
        
         public Login()
         {

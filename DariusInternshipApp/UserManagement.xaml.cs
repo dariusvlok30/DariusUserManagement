@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace DariusInternshipApp
 {
@@ -37,9 +38,9 @@ namespace DariusInternshipApp
             Edit,
             None
         }
-        //public static string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=DariusInternship;Trusted_Connection=True;";
-        private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
-        private static string connectionString = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
+        public static string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=LeaderTrailers;Trusted_Connection=True;";
+        //private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
+        private static string connectionString = @"Server=localhost\MSSQLSERVER01;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
 
         private List<Part> listParts = new List<Part>();
         private List<PartMovement> listPartsMovement = new List<PartMovement>();
@@ -713,9 +714,46 @@ namespace DariusInternshipApp
 
         }
 
+
         private void cmbPartsRowsPerPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void btnAddPart_Click(object sender, RoutedEventArgs e)
+        {
+            string connectionString = "YourConnectionStringHere";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand("sp_create_part", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+
+                        command.Parameters.AddWithValue("@partNumber", txtPartNumber.Text);
+                        command.Parameters.AddWithValue("@name", txtName.Text);
+                        command.Parameters.AddWithValue("@partsCategoryID", int.Parse(txtPartsCategoryID.Text));
+                        command.Parameters.AddWithValue("@description", txtDescription.Text);
+                        command.Parameters.AddWithValue("@price", decimal.Parse(txtPrice.Text));
+                        command.Parameters.AddWithValue("@expectedStock", int.Parse(txtExpectedStock.Text));
+                        command.Parameters.AddWithValue("@stockOnHand", int.Parse(txtStockOnHand.Text));
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Part added successfully!");
+
+                LoadPartsDataGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding part: " + ex.Message);
+            }
         }
     }
 
@@ -749,3 +787,6 @@ namespace DariusInternshipApp
         public DateTime dateAltered { get; set; }
     }
 }
+
+
+
