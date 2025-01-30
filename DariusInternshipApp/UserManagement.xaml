@@ -390,6 +390,8 @@
 
                     </Grid>
 
+                    <Button Grid.Row="0" Grid.Column="2" Name="btnNewPart" Content="New Part" Margin="10,0,0,0" Width="70" HorizontalAlignment="Left" Height="26" Click="btnAddPart_Click" />
+
                     <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" HorizontalAlignment="Center" Background="#448D76" Width="350">
                         <StackPanel>
                             <Label Content="Part Management" FontSize="18" Foreground="#79BEA8" Name="lblPartManagement" Height="35" HorizontalAlignment="Center"/>

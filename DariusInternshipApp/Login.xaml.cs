@@ -22,9 +22,6 @@ namespace DariusInternshipApp
     /// </summary>
     public partial class Login
     {
-        private string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=LeaderTrailers;Trusted_Connection=True;";
-        //private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
-       
         public Login()
         {
             InitializeComponent();
@@ -36,7 +33,7 @@ namespace DariusInternshipApp
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            //using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            //using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             //{
             //    using (SqlCommand command = new SqlCommand("sp_create_user", connection))
             //    {
@@ -55,7 +52,7 @@ namespace DariusInternshipApp
             string loggedInUserUUID = "";
             string roleID = "";
             string roleName = "";
-            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("sp_get_userPassword", connection))
                 {

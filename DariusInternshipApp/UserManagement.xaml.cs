@@ -38,9 +38,8 @@ namespace DariusInternshipApp
             Edit,
             None
         }
-        public static string connectionStringHardcoded = @"Server=localhost\MSSQLSERVER01;Database=LeaderTrailers;Trusted_Connection=True;";
-        //private static string connectionStringHardcoded = @"Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
-        private static string connectionString = @"Server=localhost\MSSQLSERVER01;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True";
+
+        private userAction chosenPartAction;
 
         private List<Part> listParts = new List<Part>();
         private List<PartMovement> listPartsMovement = new List<PartMovement>();
@@ -65,7 +64,7 @@ namespace DariusInternshipApp
         private void LoadMaxPages(string rowsPerPage) 
         {
             DataTable dt = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("sp_get_usersMaxPaging", connection))
                 {
@@ -98,7 +97,7 @@ namespace DariusInternshipApp
         private void LoadDataGrid(int pageNumber)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("sp_get_users", connection))
                 {
@@ -269,7 +268,7 @@ namespace DariusInternshipApp
         {
             if (chosenAction == userAction.Add)
             {
-                using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+                using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
                 {
                     using (SqlCommand command = new SqlCommand("sp_create_user", connection))
                     {
@@ -288,7 +287,7 @@ namespace DariusInternshipApp
             }
             else if (chosenAction == userAction.Edit)
             {
-                using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+                using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
                 {
                     using (SqlCommand command = new SqlCommand("sp_update_userDetails", connection))
                     {
@@ -313,7 +312,7 @@ namespace DariusInternshipApp
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("sp_delete_user", connection))
                 {
@@ -355,7 +354,7 @@ namespace DariusInternshipApp
         private void LoadAuditsGrid() 
         {
             DataTable dt = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("select * from vw_audit order by dateOfChange asc", connection))
                 {
@@ -372,7 +371,7 @@ namespace DariusInternshipApp
         private void InsertAudit(string descriptionOfChange)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("sp_insert_audit", connection))
                 {
@@ -388,7 +387,7 @@ namespace DariusInternshipApp
         private void LoadRoles()
         {
             DataTable dt = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionStringHardcoded))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("select * from vw_role", connection))
                 {
@@ -415,7 +414,7 @@ namespace DariusInternshipApp
             DataTable dataTable = new DataTable();
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
                 {
                     connection.Open();
 
@@ -482,7 +481,7 @@ namespace DariusInternshipApp
             DataTable dataTable = new DataTable();
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
                 {
                     connection.Open();
 
@@ -540,7 +539,7 @@ namespace DariusInternshipApp
             DataTable dataTable = new DataTable();
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
                 {
                     connection.Open();
 
@@ -606,7 +605,7 @@ namespace DariusInternshipApp
 
         private void btnCapture_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
                 using (SqlCommand command = new SqlCommand("sp_insert_partsMovement", connection))
                 {
@@ -635,22 +634,60 @@ namespace DariusInternshipApp
 
         private void btnSaveParts_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                using (SqlCommand command = new SqlCommand("sp_update_parts", connection))
+                if (chosenPartAction.Equals(userAction.Add))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("partID", txtEditPartID.Text);
-                    command.Parameters.AddWithValue("partName", txtEditPartName.Text);
-                    command.Parameters.AddWithValue("partNumber", txtEditPartNumber.Text);
-                    command.Parameters.AddWithValue("partpartsCategoryID", cmbEditPartCategory.SelectedValue);
-                    command.Parameters.AddWithValue("partPrice", txtEditPartPrice.Text);
-                    command.Parameters.AddWithValue("partExpectedStock", txtEditPartExpectedStock.Text);
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
+                    {
+                        using (SqlCommand command = new SqlCommand("sp_create_part", connection))
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            command.Parameters.AddWithValue("@partNumber", txtEditPartNumber.Text);
+                            command.Parameters.AddWithValue("@name", txtEditPartName.Text);
+                            command.Parameters.AddWithValue("@partsCategoryID", cmbEditPartCategory.SelectedValue);
+                            command.Parameters.AddWithValue("@price", txtEditPartPrice.Text);
+                            command.Parameters.AddWithValue("@expectedStock", txtEditPartExpectedStock.Text);
+                            command.Parameters.AddWithValue("@stockOnHand", txtEditPartStockOnHand.Text);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Part added successfully!");
+
+                    LoadPartsDataGrid();
                 }
+                else if (chosenPartAction == userAction.Edit)
+                {
+                    using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
+                    {
+                        using (SqlCommand command = new SqlCommand("sp_update_parts", connection))
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.Parameters.AddWithValue("partID", txtEditPartID.Text);
+                            command.Parameters.AddWithValue("partName", txtEditPartName.Text);
+                            command.Parameters.AddWithValue("partNumber", txtEditPartNumber.Text);
+                            command.Parameters.AddWithValue("partpartsCategoryID", cmbEditPartCategory.SelectedValue);
+                            command.Parameters.AddWithValue("partPrice", txtEditPartPrice.Text);
+                            command.Parameters.AddWithValue("partExpectedStock", txtEditPartExpectedStock.Text);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    LoadPartsDataGrid();
+                }
+
+
             }
-            LoadPartsDataGrid();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding part: " + ex.Message);
+            }
+
+
+            
         }
 
         private void dgPartsManagement_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -693,12 +730,13 @@ namespace DariusInternshipApp
 
                 if (!txtEditPartID.Text.Equals(""))
                 {
-                    //lblUserManagement.Content = sUserMangement + " - Update User";
+                    chosenPartAction = userAction.Edit;
                     btnDelete.Visibility = Visibility.Visible;
 
                 }
                 else
                 {
+                    chosenPartAction = userAction.None;
                     btnDelete.Visibility = Visibility.Hidden;
                 }
             }
@@ -722,39 +760,17 @@ namespace DariusInternshipApp
 
         private void btnAddPart_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "YourConnectionStringHere";
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    using (SqlCommand command = new SqlCommand("sp_create_part", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-
-
-                        command.Parameters.AddWithValue("@partNumber", txtPartNumber.Text);
-                        command.Parameters.AddWithValue("@name", txtName.Text);
-                        command.Parameters.AddWithValue("@partsCategoryID", int.Parse(txtPartsCategoryID.Text));
-                        command.Parameters.AddWithValue("@description", txtDescription.Text);
-                        command.Parameters.AddWithValue("@price", decimal.Parse(txtPrice.Text));
-                        command.Parameters.AddWithValue("@expectedStock", int.Parse(txtExpectedStock.Text));
-                        command.Parameters.AddWithValue("@stockOnHand", int.Parse(txtStockOnHand.Text));
-
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-
-                MessageBox.Show("Part added successfully!");
-
-                LoadPartsDataGrid();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding part: " + ex.Message);
-            }
+            chosenPartAction = userAction.Add;
+            //TODO : hier, clear al die textboxes op die user management add screen.
+            btnDelete.Visibility = Visibility.Hidden;
+            txtUserUUID.Clear();
+            txtUserUUID.Text = "(auto generated)";
+            txtUsername.Clear();
+            pwdUserPassword.Clear();
+            grdPassword.Visibility = Visibility.Visible;
+            lblUserManagement.Content = sUserMangement + " - Create User";
         }
+
     }
 
     public class Part
