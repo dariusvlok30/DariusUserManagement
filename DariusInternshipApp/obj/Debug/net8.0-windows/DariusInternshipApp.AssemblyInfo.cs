@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DariusInternshipApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a89b2ef628ffd15473b435add90f0de27ffb5867")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+942915d47300414f455ded60a1e76f98432d8c0a")]
 [assembly: System.Reflection.AssemblyProductAttribute("DariusInternshipApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DariusInternshipApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

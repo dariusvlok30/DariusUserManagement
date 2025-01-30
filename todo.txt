@@ -1,0 +1,24 @@
+new button for parts, so we can add them manually via the  frontend.
+
+first this means we need a new stored procedure in sql, we can call it sp_create_part.
+then we do the onclick event of this new button in the frontend.
+onclick we need to call this  stored procedure to add data to the parts table.
+then we reload the parts grid and the .
+
+
+eg of stored proc.
+
+CREATE procedure [dbo].[sp_create_user]
+	@usernameVar varchar(255)
+	, @encryptedPassword varchar(max) ,
+	@roleID uniqueidentifier
+as
+begin
+	
+	insert into Users 
+	(username, [password],roleID)
+	values
+	(@usernameVar,@encryptedPassword, @roleID)
+
+end
+GO
