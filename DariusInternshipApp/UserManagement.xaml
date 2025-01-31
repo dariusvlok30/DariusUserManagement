@@ -209,11 +209,11 @@
                             <Label Content="User Management" FontSize="18" Foreground="#79BEA8" Name="lblUserManagement" Height="35" HorizontalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal" Width="300">
                                 <Label Content="User UUID:" Foreground="#79BEA8" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <TextBox x:Name="txtUserUUID" Height="26"  Margin="0,5,0,5" Width="250" IsEnabled="False" HorizontalAlignment="Right"/>
+                                <TextBox x:Name="txtUserUUID" Height="26"  Margin="0,5,0,5" Width="250" IsEnabled="False" HorizontalAlignment="Right" TextChanged="txtUserUUID_TextChanged"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="300">
                                 <Label Content="Username:" Foreground="#79BEA8" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <TextBox x:Name="txtUsername" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
+                                <TextBox x:Name="txtUsername" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right" TextChanged="txtUsername_TextChanged"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="300">
                                 <Label Content="Role:" Foreground="#79BEA8" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -306,12 +306,13 @@
                         <RowDefinition Height="35"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="150*"/>
                         <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
 
                     <!--Search bar-->
-                    <Grid Grid.Column="0" VerticalAlignment="Center" Background="#448D76" Height="35">
+                    <Grid Grid.Column="0" VerticalAlignment="Center" Background="#448D76" Height="35" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="65"/>
                             <ColumnDefinition Width="200"/>
@@ -330,10 +331,10 @@
 
                     </Grid>
 
-                    <DataGrid Grid.Row="1" x:Name="dgPartsManagement" Margin="10,10,10,10" IsReadOnly="True" SelectionChanged="dgPartsManagement_SelectionChanged"/>
+                    <DataGrid Grid.Row="1" x:Name="dgPartsManagement" Margin="10,10,10,10" IsReadOnly="True" SelectionChanged="dgPartsManagement_SelectionChanged" Grid.ColumnSpan="2"/>
 
                     <!--Bottom Pagination Elements-->
-                    <Grid Name="partsBottomPaginationGrid" Grid.Row="2" Grid.Column="0" Background="#448D76" >
+                    <Grid Name="partsBottomPaginationGrid" Grid.Row="1" Grid.Column="0" Background="#448D76" Grid.ColumnSpan="2" Margin="0,502,0,0" Grid.RowSpan="2" >
 
                         <Grid Name="partsCenterPaginationGrid" >
                             <Grid.ColumnDefinitions>
@@ -390,7 +391,7 @@
 
                     </Grid>
 
-                    <Button Grid.Row="0" Grid.Column="2" Name="btnNewPart" Content="New Part" Margin="10,0,0,0" Width="70" HorizontalAlignment="Left" Height="26" Click="btnAddPart_Click" />
+                    <Button Grid.Row="0" Grid.Column="2" Name="btnNewPart" Content="New Part" Margin="10,4,0,5" Width="70" HorizontalAlignment="Left" Height="26" Click="btnAddPart_Click" />
 
                     <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" HorizontalAlignment="Center" Background="#448D76" Width="350">
                         <StackPanel>
@@ -399,10 +400,17 @@
                                 <Label Content="ID:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <TextBox x:Name="txtEditPartID" Height="26"  Margin="0,5,0,5" Width="250" IsEnabled="False" HorizontalAlignment="Right"/>
                             </StackPanel>
+
                             <StackPanel Orientation="Horizontal" Width="355">
                                 <Label Content="Number:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <TextBox x:Name="txtEditPartNumber" Height="26"  Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
                             </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Width="355">
+                                <Label Content="Description:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtEditPartDescription" Height="26"  Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
+                            </StackPanel>
+ 
                             <StackPanel Orientation="Horizontal" Width="355">
                                 <Label Content="Name:" Foreground="#79BEA8" Width="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <TextBox x:Name="txtEditPartName" Height="26" Margin="0,5,0,5" Width="250" HorizontalAlignment="Right"/>
@@ -457,8 +465,8 @@
             </TabItem>
         </TabControl>
 
-       
+
     </Grid>
-    
-    
+
+
 </Window>

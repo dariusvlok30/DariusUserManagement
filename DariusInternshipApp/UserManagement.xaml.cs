@@ -650,6 +650,7 @@ namespace DariusInternshipApp
                             command.Parameters.AddWithValue("@price", txtEditPartPrice.Text);
                             command.Parameters.AddWithValue("@expectedStock", txtEditPartExpectedStock.Text);
                             command.Parameters.AddWithValue("@stockOnHand", txtEditPartStockOnHand.Text);
+                            command.Parameters.AddWithValue("@description", txtEditPartDescription.Text);
                             connection.Open();
                             command.ExecuteNonQuery();
                         }
@@ -669,6 +670,7 @@ namespace DariusInternshipApp
                             command.Parameters.AddWithValue("partID", txtEditPartID.Text);
                             command.Parameters.AddWithValue("partName", txtEditPartName.Text);
                             command.Parameters.AddWithValue("partNumber", txtEditPartNumber.Text);
+                            command.Parameters.AddWithValue("partDescription", txtEditPartDescription.Text);
                             command.Parameters.AddWithValue("partpartsCategoryID", cmbEditPartCategory.SelectedValue);
                             command.Parameters.AddWithValue("partPrice", txtEditPartPrice.Text);
                             command.Parameters.AddWithValue("partExpectedStock", txtEditPartExpectedStock.Text);
@@ -758,19 +760,56 @@ namespace DariusInternshipApp
 
         }
 
+        private int GetNextPartID()
+        {
+            int maxPartID = 0;
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
+            {
+                using (SqlCommand command = new SqlCommand("SELECT MAX(id) FROM parts",connection))
+                {
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        maxPartID = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return maxPartID + 1; 
+        }
+
+
         private void btnAddPart_Click(object sender, RoutedEventArgs e)
         {
             chosenPartAction = userAction.Add;
             //TODO : hier, clear al die textboxes op die user management add screen.
+            //ek sukkel om die company deel te vind vir die parts
             btnDelete.Visibility = Visibility.Hidden;
-            txtUserUUID.Clear();
-            txtUserUUID.Text = "(auto generated)";
-            txtUsername.Clear();
-            pwdUserPassword.Clear();
+            txtEditPartID.Clear();
+            txtEditPartID.Text = GetNextPartID().ToString();
+            txtEditPartNumber.Clear();
+            txtEditPartNumber.Text = "";
+            txtEditPartName.Clear();
+            txtEditPartName.Text = "";
+            txtEditPartPrice.Clear();
+            txtEditPartPrice.Text = "";
+            txtEditPartExpectedStock.Clear();
+            txtEditPartExpectedStock.Text = "";
+            txtEditPartStockOnHand.Clear();
+            txtEditPartStockOnHand.Text = "";
             grdPassword.Visibility = Visibility.Visible;
-            lblUserManagement.Content = sUserMangement + " - Create User";
+            lblPartManagement.Content = dgPartsManagement + "";
         }
 
+        private void txtUserUUID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 
     public class Part

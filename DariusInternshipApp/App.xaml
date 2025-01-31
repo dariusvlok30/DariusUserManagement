@@ -5,7 +5,7 @@
              StartupUri="Login.xaml">
     <Application.Resources>
         <sys:String x:Key="DbConnectionString">
-            Server=BRANDONLAP;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True
+            Server=localhost\MSSQLSERVER01;Database=LeaderTrailers;Integrated Security=True;TrustServerCertificate=True
         </sys:String>
     </Application.Resources>
 </Application>
