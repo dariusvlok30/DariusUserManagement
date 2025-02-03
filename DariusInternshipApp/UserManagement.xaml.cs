@@ -650,7 +650,6 @@ namespace DariusInternshipApp
                             command.Parameters.AddWithValue("@price", txtEditPartPrice.Text);
                             command.Parameters.AddWithValue("@expectedStock", txtEditPartExpectedStock.Text);
                             command.Parameters.AddWithValue("@stockOnHand", txtEditPartStockOnHand.Text);
-                            command.Parameters.AddWithValue("@description", txtEditPartDescription.Text);
                             connection.Open();
                             command.ExecuteNonQuery();
                         }
@@ -732,6 +731,7 @@ namespace DariusInternshipApp
 
                 if (!txtEditPartID.Text.Equals(""))
                 {
+                    lblPartManagement.Content = "Part Management";
                     chosenPartAction = userAction.Edit;
                     btnDelete.Visibility = Visibility.Visible;
 
@@ -760,33 +760,12 @@ namespace DariusInternshipApp
 
         }
 
-        private int GetNextPartID()
-        {
-            int maxPartID = 0;
-            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
-            {
-                using (SqlCommand command = new SqlCommand("SELECT MAX(id) FROM parts",connection))
-                {
-                    connection.Open();
-                    var result = command.ExecuteScalar();
-                    if (result != DBNull.Value)
-                    {
-                        maxPartID = Convert.ToInt32(result);
-                    }
-                }
-            }
-            return maxPartID + 1; 
-        }
-
-
         private void btnAddPart_Click(object sender, RoutedEventArgs e)
         {
             chosenPartAction = userAction.Add;
-            //TODO : hier, clear al die textboxes op die user management add screen.
-            //ek sukkel om die company deel te vind vir die parts
             btnDelete.Visibility = Visibility.Hidden;
             txtEditPartID.Clear();
-            txtEditPartID.Text = GetNextPartID().ToString();
+            txtEditPartID.Text = "(auto generated)";
             txtEditPartNumber.Clear();
             txtEditPartNumber.Text = "";
             txtEditPartName.Clear();
@@ -798,7 +777,7 @@ namespace DariusInternshipApp
             txtEditPartStockOnHand.Clear();
             txtEditPartStockOnHand.Text = "";
             grdPassword.Visibility = Visibility.Visible;
-            lblPartManagement.Content = dgPartsManagement + "";
+            lblPartManagement.Content = "Add New Part";
         }
 
         private void txtUserUUID_TextChanged(object sender, TextChangedEventArgs e)
