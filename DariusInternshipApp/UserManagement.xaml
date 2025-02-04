@@ -434,6 +434,8 @@
 
                                 <Button Name="btnDeleteParts" Content="Delete" Width="70" Height="26" HorizontalAlignment="Center" Visibility="Hidden" Margin="10,0,10,0" Click="btnDeleteParts_Click"/>
 
+                                
+                                
                                 <Button Name="btnSaveParts" Content="Save" Width="50" Height="26" HorizontalAlignment="Right" Margin="10,0,10,0" Click="btnSaveParts_Click"/>
 
                             </StackPanel>

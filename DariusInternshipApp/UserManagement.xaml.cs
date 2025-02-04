@@ -310,7 +310,7 @@ namespace DariusInternshipApp
 
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+       private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
@@ -696,6 +696,23 @@ namespace DariusInternshipApp
             DataGrid dataGrid = sender as DataGrid;
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
 
+            if (dataGrid.SelectedItem is Part selectedPart)
+            {
+                
+                txtEditPartID.Text = selectedPart.id.ToString();
+                txtEditPartNumber.Text = selectedPart.partNumber;
+                txtEditPartName.Text = selectedPart.name;
+                txtEditPartPrice.Text = selectedPart.pricePerUnit.ToString();
+                txtEditPartExpectedStock.Text = selectedPart.expectedStock.ToString();
+                txtEditPartStockOnHand.Text = selectedPart.stockOnHand.ToString();
+
+                
+                LoadPartsMovementDataGrid();
+
+                
+                btnDeleteParts.Visibility = Visibility.Visible;
+            }
+
             if (row != null)
             {
                 DataGridCell RowColumnID = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
@@ -762,6 +779,9 @@ namespace DariusInternshipApp
 
         private void btnAddPart_Click(object sender, RoutedEventArgs e)
         {
+
+            btnDeleteParts.Visibility = Visibility.Hidden;
+
             chosenPartAction = userAction.Add;
             btnDelete.Visibility = Visibility.Hidden;
             txtEditPartID.Clear();
@@ -788,6 +808,25 @@ namespace DariusInternshipApp
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+        private void btnbtnDeleteParts(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
+            {
+                using (SqlCommand command = new SqlCommand("sp_delete_part  ", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("id", txtEditPartID.Text);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    lblNotify.Content = sNotifaction + "Part " + txtUsername.Text + " Deleted";
+                    LoadDataGrid(0);
+                    InsertAudit("Part " + txtEditPartID.Text + " Deleted");
+                    lblUserManagement.Content = sUserMangement;
+                    txtEditPartID.Clear();
+                    txtEditPartName.Clear();
+                }
+            }
         }
     }
 
