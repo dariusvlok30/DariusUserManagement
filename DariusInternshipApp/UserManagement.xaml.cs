@@ -813,7 +813,7 @@ namespace DariusInternshipApp
         {
             using (SqlConnection connection = new SqlConnection(Application.Current.Resources["DbConnectionString"].ToString()))
             {
-                using (SqlCommand command = new SqlCommand("sp_delete_part  ", connection))
+                using (SqlCommand command = new SqlCommand("sp_delete_part", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("id", txtEditPartID.Text);
@@ -821,8 +821,6 @@ namespace DariusInternshipApp
                     command.ExecuteNonQuery();
                     lblNotify.Content = sNotifaction + "Part " + txtUsername.Text + " Deleted";
                     LoadDataGrid(0);
-                    InsertAudit("Part " + txtEditPartID.Text + " Deleted");
-                    lblUserManagement.Content = sUserMangement;
                     txtEditPartID.Clear();
                     txtEditPartName.Clear();
                 }

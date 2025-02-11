@@ -70,4 +70,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\Views\" />
+    <Folder Include="Database\Stored Procedures\" />
+    <Folder Include="Database\Tables\" />
+  </ItemGroup>
+
 </Project>
